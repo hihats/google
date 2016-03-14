@@ -2,6 +2,8 @@
 
 ## Case PHP
 
+Install [Library](https://github.com/google/google-api-php-client) by composer
+
 ```bash
 $ mkdir google-api-php-client
 $ cd google-api-php-client
