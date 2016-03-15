@@ -1,4 +1,7 @@
 <?php
+/*
+ * [*required] place configuration file at config/***.php
+ */
 ini_set('date.timezone', 'Asia/Tokyo');
 
 define('ROOT_DIR', '/var/www/google/');
@@ -21,6 +24,7 @@ try{
 
     // Analytics process
     $analytics = new Google_Service_Analytics($client);
+    $conf_file_location = ROOT_DIR.'analytics/config/simple.php';
     $config = require_once $conf_file_location;
     $obj = $analytics->data_ga->get(
         "ga:{$conf['view_id']}",
