@@ -3,7 +3,7 @@ class Google_Service_Analytics_Multi_Service extends Google_Service_Analytics {
     public $option;
     public $metrics;
     public $period;
-    function __construct($client, $conf_file_location, $period=array()){
+    public function __construct($client, $conf_file_location, $period=array()){
         parent::__construct($client);
         $this->loadParam($conf_file_location);
         $this->setPeriod($period);
@@ -29,13 +29,5 @@ class Google_Service_Analytics_Multi_Service extends Google_Service_Analytics {
       $this->period['from'] = $this->period['to'] = date("Y-m-d", strtotime('-1 day'));
       if(isset($period['from']) && $period['from']) $this->period['from'] = $period['from'];
       if(isset($period['to']) && $period['to']) $this->period['to'] = $period['to'];
-    }
-    public function outCsv($obj, $filepath){
-        $filename = "{$this->name}_{$this->period['from']}_{$this->period['to']}.csv";
-        $fh = fopen($filepath.$filename, "w");
-        foreach ($obj->rows as $value) {
-            fputcsv($fh, $value);
-        }
-        fclose($fh);
     }
 }
