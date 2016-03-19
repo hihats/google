@@ -10,15 +10,15 @@ try{
     // argument validation
     $conf_file_location = $argv[1];
     if (!file_exists($conf_file_location)) throw new Exception("Error!! File does not exist.");
-    $period = isset($argv[2])? ["from" => $argv[2], "to" => $argv[2]] : array();
-    if(isset($argv[3])) $period['to'] = $argv[3];
+    $from = isset($argv[2])? $argv[2] : false;
+    $to = isset($argv[3])? $argv[3] : false;
 
     // main process
-    $controller = new Controller(new Google_Client());
+    $controller = new Controller(new Google_Client(), $from, $to, $conf_file_location);
     $controller->anallytics(new Google_Service_Analytics_Multi_Service(
         $controller->client,
-        $conf_file_location,
-        $period
+        $controller->conf,
+        $controller->period
     ));
 }catch(Exception $e){
     echo $e->getMessage();
