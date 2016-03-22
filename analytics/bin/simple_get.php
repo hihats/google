@@ -1,6 +1,7 @@
 <?php
 /*
- * [*required] place configuration file at config/***.php
+ * @description must place configuration file at config/simple.php
+ * @link https://github.com/hihats/google/tree/master/analytics
  */
 ini_set('date.timezone', 'Asia/Tokyo');
 
@@ -23,11 +24,12 @@ try{
     $accessToken = $client->getAccessToken();
 
     // Analytics process
-    $analytics = new Google_Service_Analytics($client);
     $conf_file_location = ROOT_DIR.'analytics/config/simple.php';
     $config = require_once $conf_file_location;
+    $from = $to = date('Y-m-d', strtotime('-1 day')); // get yesterday's
+    $analytics = new Google_Service_Analytics($client);
     $obj = $analytics->data_ga->get(
-        "ga:{$conf['view_id']}",
+        "ga:{$config['view_ids'][0]}",
         $from,
         $to,
         $config['metrics'],
