@@ -1,10 +1,19 @@
 <?php
+/*
+ * Automatic data acqusition from GA and output csv file
+ * @param string $argv[1] [*required] file location path
+ * @param date $argv[2] [Y-m-d] from date
+ * @param date $argv[3] [Y-m-d] to date
+ * @description must place configuration file at config/***.php
+ */
+
 ini_set('date.timezone', 'Asia/Tokyo');
 
 define('ROOT_DIR', '/var/www/google/');
+define('PJ_DIR', '/var/www/google/analytics/');
 require_once ROOT_DIR.'google-api-php-client/vendor/autoload.php';
-require_once ROOT_DIR.'analytics/class/MultiService.php';
-require_once ROOT_DIR.'analytics/controller/Controller.php';
+require_once PJ_DIR.'class/MultiService.php';
+require_once PJ_DIR.'controller/Controller.php';
 
 try{
     // argument validation
@@ -21,7 +30,7 @@ try{
         $controller->period
     ));
 }catch(Exception $e){
-    echo $e->getMessage();
+    echo '['.date('Y-m-d h:i:s').']' . $e->getMessage();
 }catch(apiServiceException $e){
-    echo $e->getMessage();
+    echo '['.date('Y-m-d h:i:s').']' . $e->getMessage();
 }
