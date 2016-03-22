@@ -1,4 +1,6 @@
-# Batch Scripts for getting Google Analytics Data
+# Job Scripts taking Google Analytics Data and processing them
+
+*service-account.json file must be placed in parent directory*
 
 ## Case PHP
 
@@ -7,6 +9,9 @@
 mkdir config
 vim config/simple.php
 ```
+- configディレクトリを作成し、配下に***.phpファイルを作成
+- Analyticsデータ取得時のパラメータを下記サンプルのように設定
+
 e.g.
 ```php
 <?php
