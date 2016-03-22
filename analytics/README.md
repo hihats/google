@@ -23,3 +23,6 @@ return [
   "sort" => "ga:date"
 ];
 ```
+
+### Simple sample script
+[前日分のデータを取得Sample](https://github.com/hihats/google/blob/master/analytics/bin/simple_get.php)
